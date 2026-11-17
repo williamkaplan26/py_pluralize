@@ -29,3 +29,10 @@ exception.
 It will call ``bus`` plural because it ends in ``s``, and it cannot know that
 ``series`` is both singular and plural.  If you need certainty, keep your own
 lexicon; this function is for display and filtering, not for parsing.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
